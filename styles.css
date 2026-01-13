@@ -1,0 +1,478 @@
+:root {
+    --bg-main: #08080a;
+    --bg-panel: #121217;
+    --red-blood: #8b0000;
+    --red-glow: #c11212;
+    --text-main: #eaeaea;
+    --text-muted: #9b9b9b;
+    --border-dark: #26262c;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    min-height: 100vh;
+    font-family: 'Cinzel', serif;
+    background:
+        radial-gradient(circle at top, #1b1b22 0%, var(--bg-main) 60%),
+        repeating-linear-gradient(45deg, rgba(139, 0, 0, 0.03) 0 2px, transparent 2px 6px);
+    color: var(--text-main);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+
+body::after {
+    content: "";
+    position: fixed;
+    inset: 0;
+    opacity: 0.05;
+    animation: drift 120s linear infinite;
+    pointer-events: none;
+}
+
+@keyframes drift {
+    from {
+        background-position: 0 0;
+    }
+
+    to {
+        background-position: 2000px 2000px;
+    }
+}
+
+.container {
+    width: 100%;
+    max-width: 440px;
+    background: linear-gradient(180deg, #16161c, var(--bg-panel));
+    border: 1px solid var(--border-dark);
+    border-radius: 18px;
+    padding: 36px 30px 40px;
+    box-shadow:
+        0 0 0 1px rgba(255, 0, 0, 0.05),
+        0 30px 80px rgba(0, 0, 0, 0.9),
+        inset 0 0 60px rgba(139, 0, 0, 0.06);
+    position: relative;
+    overflow: hidden;
+}
+
+.container::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    opacity: 0.035;
+    pointer-events: none;
+}
+
+h1 {
+    margin: 0 0 26px;
+    text-align: center;
+    font-size: 28px;
+    letter-spacing: 1.2px;
+    color: #f5f5f5;
+    text-shadow:
+        0 0 8px rgba(139, 0, 0, 0.4),
+        0 0 24px rgba(139, 0, 0, 0.2);
+}
+
+h1 span {
+    color: var(--red-blood);
+}
+
+.subtitle {
+    text-align: center;
+    font-size: 12px;
+    color: var(--text-muted);
+    letter-spacing: 1px;
+    margin-bottom: 22px;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+input[type="text"] {
+    width: 100%;
+    padding: 15px 18px;
+    background: #0e0e13;
+    border: 1px solid var(--border-dark);
+    border-radius: 12px;
+    color: var(--text-main);
+    font-size: 15px;
+    outline: none;
+    transition: all 0.25s ease;
+}
+
+input[type="text"]::placeholder {
+    color: var(--text-muted);
+}
+
+input[type="text"]:focus {
+    border-color: var(--red-blood);
+    box-shadow:
+        0 0 0 1px rgba(139, 0, 0, 0.7),
+        0 0 22px rgba(139, 0, 0, 0.45);
+}
+
+button {
+    margin-top: 8px;
+    padding: 15px;
+    font-family: 'Cinzel', serif;
+    font-size: 15px;
+    letter-spacing: 1.2px;
+    color: #f3f3f3;
+    background: linear-gradient(180deg, #8b0000, #560000);
+    border: 1px solid #3a0000;
+    border-radius: 14px;
+    cursor: pointer;
+    transition: all 0.25s ease;
+    box-shadow:
+        0 10px 30px rgba(139, 0, 0, 0.45),
+        inset 0 0 14px rgba(255, 255, 255, 0.05);
+}
+
+button:hover {
+    background: linear-gradient(180deg, #a80000, #6f0000);
+    box-shadow:
+        0 14px 40px rgba(193, 18, 18, 0.7),
+        inset 0 0 16px rgba(255, 255, 255, 0.08);
+    transform: translateY(-2px);
+}
+
+button:active {
+    transform: translateY(1px);
+    box-shadow:
+        0 6px 18px rgba(139, 0, 0, 0.45),
+        inset 0 0 18px rgba(0, 0, 0, 0.4);
+}
+
+#result {
+    margin-top: 26px;
+    text-align: center;
+    font-size: 13px;
+    color: #d6d6d6;
+    opacity: 0.95;
+    min-height: 18px;
+}
+
+.mark {
+    display: block;
+    margin: 22px auto 0;
+    width: 46px;
+    height: 46px;
+    border-radius: 50%;
+    border: 1px solid rgba(139, 0, 0, 0.55);
+    box-shadow:
+        0 0 26px rgba(139, 0, 0, 0.6),
+        inset 0 0 14px rgba(139, 0, 0, 0.5);
+    animation: pulse 3.5s ease-in-out infinite;
+}
+
+@keyframes pulse {
+
+    0%,
+    100% {
+        box-shadow:
+            0 0 18px rgba(139, 0, 0, 0.4),
+            inset 0 0 12px rgba(139, 0, 0, 0.4);
+    }
+
+    50% {
+        box-shadow:
+            0 0 36px rgba(193, 18, 18, 0.9),
+            inset 0 0 20px rgba(193, 18, 18, 0.7);
+    }
+}
+
+.smoke {
+    position: fixed;
+    inset: -20%;
+    background-repeat: repeat;
+    pointer-events: none;
+    opacity: 0.12;
+    animation: smokeMove 180s linear infinite;
+}
+
+.smoke.s1 {
+    animation-duration: 200s;
+}
+
+.smoke.s2 {
+    animation-duration: 260s;
+    opacity: 0.08;
+}
+
+@keyframes smokeMove {
+    from {
+        transform: translate(0, 0);
+    }
+
+    to {
+        transform: translate(600px, -400px);
+    }
+}
+
+.light-flash {
+    position: fixed;
+    top: -120px;
+    right: -120px;
+    width: 320px;
+    height: 320px;
+    background: radial-gradient(circle, rgba(255, 255, 255, 0.18) 0%, rgba(255, 255, 255, 0.08) 30%, transparent 65%);
+    opacity: 0;
+    pointer-events: none;
+    animation: flash 12s ease-in-out infinite;
+}
+
+@keyframes flash {
+
+    0%,
+    88%,
+    100% {
+        opacity: 0;
+    }
+
+    90% {
+        opacity: 0.35;
+    }
+
+    92% {
+        opacity: 0.15;
+    }
+}
+
+.vignette {
+    position: fixed;
+    inset: 0;
+    background: radial-gradient(circle at center, transparent 40%, rgba(0, 0, 0, 0.75) 100%);
+    pointer-events: none;
+    z-index: 5;
+}
+
+.glitch {
+    position: relative;
+}
+
+.glitch::before,
+.glitch::after {
+    content: attr(data-text);
+    position: absolute;
+    left: 0;
+    right: 0;
+    opacity: 0.6;
+    clip-path: inset(0 0 0 0);
+}
+
+.glitch::before {
+    color: #ff2a2a;
+    animation: glitchTop 2.5s infinite linear alternate-reverse;
+}
+
+.glitch::after {
+    color: #ffffff;
+    animation: glitchBot 3s infinite linear alternate-reverse;
+}
+
+@keyframes glitchTop {
+    0% {
+        clip-path: inset(0 0 90% 0);
+        transform: translate(-1px, -1px);
+    }
+
+    50% {
+        clip-path: inset(0 0 10% 0);
+        transform: translate(1px, 0);
+    }
+
+    100% {
+        clip-path: inset(0 0 70% 0);
+        transform: translate(-2px, 1px);
+    }
+}
+
+@keyframes glitchBot {
+    0% {
+        clip-path: inset(80% 0 0 0);
+        transform: translate(1px, 1px);
+    }
+
+    50% {
+        clip-path: inset(10% 0 0 0);
+        transform: translate(-1px, 0);
+    }
+
+    100% {
+        clip-path: inset(60% 0 0 0);
+        transform: translate(2px, -1px);
+    }
+}
+
+.eclipse {
+    position: fixed;
+    inset: 0;
+    background: radial-gradient(circle at center, rgba(0, 0, 0, 0.2) 0%, rgba(0, 0, 0, 0.95) 70%);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 1.2s ease;
+    z-index: 10;
+}
+
+.eclipse.active {
+    opacity: 1;
+}
+
+.circle {
+    position: absolute;
+    inset: -40px;
+    border-radius: 50%;
+    border: 1px solid rgba(139, 0, 0, 0.35);
+    box-shadow:
+        0 0 40px rgba(139, 0, 0, 0.35),
+        inset 0 0 40px rgba(139, 0, 0, 0.25);
+    opacity: 0;
+    animation: rotate 18s linear infinite;
+    pointer-events: none;
+}
+
+.circle.active {
+    opacity: 1;
+}
+
+@keyframes rotate {
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+.crack {
+    position: fixed;
+    width: 120px;
+    height: 120px;
+    background: radial-gradient(circle at center, rgba(139, 0, 0, 0.9) 0%, rgba(139, 0, 0, 0.4) 30%, transparent 70%);
+    opacity: 0;
+    pointer-events: none;
+    animation: crackFade 1.6s ease-out forwards;
+    z-index: 20;
+}
+
+@keyframes crackFade {
+    0% {
+        opacity: 0;
+        transform: scale(0.4);
+    }
+
+    30% {
+        opacity: 0.8;
+    }
+
+    100% {
+        opacity: 0;
+        transform: scale(1.6);
+    }
+}
+
+.tremble {
+    animation: tremble 0.6s ease-in-out;
+}
+
+@keyframes tremble {
+    0% {
+        transform: translate(0, 0);
+    }
+
+    20% {
+        transform: translate(-2px, 1px);
+    }
+
+    40% {
+        transform: translate(2px, -1px);
+    }
+
+    60% {
+        transform: translate(-1px, 2px);
+    }
+
+    80% {
+        transform: translate(1px, -2px);
+    }
+
+    100% {
+        transform: translate(0, 0);
+    }
+}
+
+.whisper {
+    position: fixed;
+    bottom: 8%;
+    width: 100%;
+    text-align: center;
+    font-size: 11px;
+    letter-spacing: 2px;
+    color: rgba(255, 255, 255, 0.25);
+    opacity: 0;
+    pointer-events: none;
+    animation: whisper 18s infinite;
+    z-index: 6;
+}
+
+@keyframes whisper {
+
+    0%,
+    80%,
+    100% {
+        opacity: 0;
+    }
+
+    85% {
+        opacity: 0.35;
+    }
+
+    90% {
+        opacity: 0.15;
+    }
+}
+
+.heartbeat {
+    animation: heartbeat 2.8s ease-in-out infinite;
+}
+
+@keyframes heartbeat {
+
+    0%,
+    100% {
+        box-shadow: 0 0 20px rgba(139, 0, 0, 0.4);
+    }
+
+    50% {
+        box-shadow: 0 0 45px rgba(193, 18, 18, 0.9);
+    }
+}
+
+.mute-button {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    background: rgba(139, 0, 0, 0.7);
+    color: #fff;
+    border: none;
+    border-radius: 12px;
+    padding: 10px 16px;
+    font-family: 'Cinzel', serif;
+    cursor: pointer;
+    z-index: 100;
+    transition: background 0.3s;
+}
+
+.mute-button:hover {
+    background: rgba(193, 18, 18, 0.8);
+}

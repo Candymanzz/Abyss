@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ABYSS</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <script src="script.js" defer></script>
+</head>
+
+<body>
+    <div class="smoke s1"></div>
+    <div class="smoke s2"></div>
+    <div class="light-flash"></div>
+    <div class="vignette"></div>
+    <div class="eclipse" id="eclipse"></div>
+    <div class="container">
+        <div class="circle" id="circle"></div>
+        <h1 class="glitch" data-text="Manifest Downloader">Manifest <span>Downloader</span></h1>
+        <div class="subtitle">Invoke data from the abyss</div>
+
+        <form id="download-form">
+            <input type="text" id="appid" placeholder="Enter Steam AppID" required />
+            <button type="submit">Begin Invocation</button>
+        </form>
+
+        <div id="result"></div>
+        <div class="mark heartbeat"></div>
+    </div>
+
+    <button class="mute-button" id="muteButton">Mute Heartbeat</button>
+
+    <audio id="heartbeat" loop autoplay preload="auto">
+        <source src="./mixkit-cinematic-heartbeat-ambience-497.wav" type="audio/mpeg">
+    </audio>
+
+    <div class="whisper">THE ABYSS IS WATCHING</div>
+</body>
+
+</html>
